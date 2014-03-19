@@ -17,7 +17,7 @@ extern "C"
 int main(int argc, char **argv)
 {
 	DrDocument doc;
-	//	DrPDFExtractor  extractor;
+	DrPDFExtractor  extractor;
 	//  DrXMLInterpreter interpreter;
 	std::cout<<"it works."<<std::endl;
 	return 0;
