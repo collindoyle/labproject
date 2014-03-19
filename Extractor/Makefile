@@ -17,7 +17,7 @@ all: $(OBJ) $(TARGET)
 
 
 $(TARGET): $(OBJ)
-	ar csrv $(TARGET) $(OBJ) $(LIBRARIES)
+	ar csrv $(TARGET) $(OBJ)
 
 $(OBJ): $(SRC)
 
