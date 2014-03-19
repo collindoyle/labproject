@@ -13,12 +13,12 @@ extern "C"
 }
 #include "DrDocument.h"
 #include "DrPDFExtractor.h"
-#include "DrXMLInterpretor.h"
+#include "DrXMLInterpreter.h"
 int main(int argc, char **argv)
 {
 	DrDocument doc;
 	DrPDFExtracor extractor;
-	DrXMLInterpretor interpretor;
+	DrXMLInterpreter interpreter;
 	std::cout<<"it works."<<std::endl;
 	return 0;
 }
