@@ -4,8 +4,8 @@ build ?= debug
 
 CFLAGS := $(CFLAGS) 
 
-SRC = $(wildcard *.c)
-OBJ = $(patsubst %.c, %.o, $(SRC))
+SRC = $(wildcard *.cpp)
+OBJ = $(patsubst %.cpp, %.o, $(SRC))
 TARGET = libdataelement.lib
 
 
