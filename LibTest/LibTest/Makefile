@@ -2,7 +2,7 @@
 
 
 LDFLAGS := -L../../../thirdparty/mupdf/build/debug/
-CFLAGS := -I../../../thirdparty/mupdf/include/
+CFLAGS := -I../../../thirdparty/mupdf/include/ -I../../DataElements/
 LIBRARIES:= -lmupdf -lopenjpeg -ljpeg -ljbig2dec -lfreetype -lz
 
 all: LibTest
