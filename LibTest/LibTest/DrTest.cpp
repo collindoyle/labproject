@@ -12,10 +12,13 @@ extern "C"
 #include "mupdf/fitz.h"
 }
 #include "DrDocument.h"
-
+#include "DrPDFExtractor.h"
+#include "DrXMLInterpretor.h"
 int main(int argc, char **argv)
 {
 	DrDocument doc;
+	DrPDFExtracor extractor;
+	DrXMLInterpretor interpretor;
 	std::cout<<"it works."<<std::endl;
 	return 0;
 }
