@@ -3,11 +3,11 @@
 
 LDFLAGS := -L../../../thirdparty/mupdf/build/debug -L../../DataElements/ -L../../Extractor
 CFLAGS := -I../../../thirdparty/mupdf/include -I../../DataElements -I../../Extractor
-LIBRARIES:= --start-group -ldataelement -lextractor -lmupdf-js-none -lopenjpeg -ljpeg -ljbig2dec -lfreetype -lz --end-group
+LIBRARIES:=  -ldataelement -lmupdf-js-none -lextractor -lmupdf-js-none
 
 all: LibTest
 LibTest: DrTest.o
-	g++ $(LDFLAGS) -o LibTest DrTest.o $(LIBRARIES)
+	g++ $(LDFLAGS)  DrTest.o $(LIBRARIES) -o LibTest
 	rm -rf *.o
 DrTest.o: DrTest.h DrTest.cpp
 	g++ $(CFLAGS) -c DrTest.cpp -o DrTest.o
