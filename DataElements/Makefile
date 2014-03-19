@@ -11,12 +11,12 @@ TARGET := libdataelement.a
 
 all: $(SRC) $(TARGET)
 
-.cpp.o:
-	g++ $(CFLAGS) -c $<
-	
+
 $(TARGET): $(OBJS)
 	ar $(TARGET) $(OBJ)
 
+.cpp.o:
+	g++ $(CFLAGS) -c $<
 
 	
 clean:
