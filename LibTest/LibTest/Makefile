@@ -3,7 +3,7 @@
 
 LDFLAGS := -L../../../thirdparty/mupdf/build/debug/ -L../../DataElements/
 CFLAGS := -I../../../thirdparty/mupdf/include/ -I../../DataElements/ -I../../Extractor/
-LIBRARIES:= -lextracor -ldataelement -lmupdf -lopenjpeg -ljpeg -ljbig2dec -lfreetype -lz 
+LIBRARIES:= -lextractor -ldataelement -lmupdf -lopenjpeg -ljpeg -ljbig2dec -lfreetype -lz 
 
 all: LibTest
 LibTest: DrTest.o
