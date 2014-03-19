@@ -2,11 +2,11 @@
 
 build ?= debug
 
-CFLAGS := $(CFLAGS) 
+CFLAGS := $(CFLAGS) -Wall -Wvla -g 
 
-SRC = $(wildcard *.cpp)
-OBJ = $(patsubst %.cpp, %.o, $(SRC))
-TARGET = libdataelement.lib
+SRC := $(wildcard *.cpp)
+OBJ := $(patsubst %.cpp, %.o, $(SRC))
+TARGET := libdataelement.lib
 
 
 all: $(SRC) $(TARGET)
