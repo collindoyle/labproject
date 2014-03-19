@@ -1,7 +1,7 @@
 #GNU Makefile
 
 
-LDFLAGS :=  -static -L../../../thirdparty/mupdf/build/debug -L../../DataElements/ -L../../Extractor
+LDFLAGS := -L../../../thirdparty/mupdf/build/debug -L../../DataElements/ -L../../Extractor
 CFLAGS := -I../../../thirdparty/mupdf/include -I../../DataElements -I../../Extractor
 LIBRARIES:=  -lextractor -lmupdf-js-none -ldataelement -lmupdf-js-none
 
