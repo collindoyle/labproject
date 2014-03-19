@@ -17,8 +17,8 @@ all: $(OBJ) $(TARGET)
 
 
 $(TARGET): $(OBJ)
-	ar csrv $(TARGET) $(OBJ)
-
+	ar rv $(TARGET) $(OBJ)
+	ranlib $@
 $(OBJ): $(SRC)
 
 .cpp.o:
