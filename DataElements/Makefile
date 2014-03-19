@@ -8,8 +8,9 @@ default: all
 
 all: lib
 
-lib: $(patsubst %.c, %.o, $(wildcard *.c))
+objects := $(patsubst %.c, %.o, $(wildcard *.c))
 
+lib: $(objects)
 .cpp.o:
 	g++ $(CFLAGS) -c $< -o $@
 	
