@@ -15,6 +15,8 @@ all: $(SRC) $(TARGET)
 $(TARGET): $(OBJS)
 	ar $(TARGET) $(OBJ)
 
+$(OBJS): $(SRC)
+
 .cpp.o:
 	g++ $(CFLAGS) -c $<
 
