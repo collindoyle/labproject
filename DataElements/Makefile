@@ -4,19 +4,17 @@ build ?= debug
 
 CFLAGS := $(CFLAGS) 
 
-SRC := $(wildcard *.c)
-OBJ := $(patsubst %.c, %.o, $(SRC))
+SRC = $(wildcard *.c)
+OBJ = $(patsubst %.c, %.o, $(SRC))
+TARGET = libdataelement.lib
 
-default: all
 
-all: lib
-
-objects := $(patsubst %.cpp, %.o, $(wildcard *.cpp))
+all:
 
 lib: libdocelements.a
 	
 libdocelements.a: $(OBJS)
 
-.cpp .o:
-	g++ $(CFLAGS) -c $< -o $@
+.cpp.o:
+	g++ $(CFLAGS) -c $<
 	
