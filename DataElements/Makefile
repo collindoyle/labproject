@@ -6,17 +6,18 @@ CFLAGS := $(CFLAGS) -Wall -Wvla -g
 
 SRC := $(wildcard *.cpp)
 OBJ := $(patsubst %.cpp, %.o, $(SRC))
-TARGET := libdataelement.lib
+TARGET := libdataelement.a
 
 
 all: $(SRC) $(TARGET)
 
-	
-$(TARGET): $(OBJS)
-
-
 .cpp.o:
 	g++ $(CFLAGS) -c $<
+	
+$(TARGET): $(OBJS)
+	ar $(TARGET) $(OBJ)
+
+
 	
 clean:
 	rm -rf *.o $(TARGET)
