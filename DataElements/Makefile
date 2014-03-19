@@ -11,7 +11,7 @@ default: all
 
 all: lib
 
-objects := $(patsubst %.c, %.o, $(wildcard *.c))
+objects := $(patsubst %.cpp, %.o, $(wildcard *.cpp))
 
 lib: libdocelements.a
 	
