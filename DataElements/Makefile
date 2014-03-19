@@ -9,11 +9,11 @@ OBJ = $(patsubst %.c, %.o, $(SRC))
 TARGET = libdataelement.lib
 
 
-all:
+all: $(SRC) $(TARGET)
 
-lib: libdocelements.a
 	
-libdocelements.a: $(OBJS)
+$(TARGET): $(OBJS)
+
 
 .cpp.o:
 	g++ $(CFLAGS) -c $<
