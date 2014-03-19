@@ -9,7 +9,7 @@ all: LibTest
 LibTest: DrTest.o
 	g++ $(LDFLAGS) -o LibTest DrTest.o $(LIBRARIES)
 	rm -rf *.o
-DrTest.o: DrTest.h DrTest.c
+DrTest.o: DrTest.h DrTest.cpp
 	g++ $(CFLAGS) -c DrTest.cpp -o DrTest.o
 
 clean:
