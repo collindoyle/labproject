@@ -18,7 +18,7 @@ int main(int argc, char **argv)
 {
 	DrDocument doc;
 	DrPDFExtractor  extractor;
-	//  DrXMLInterpreter interpreter;
+	DrXMLInterpreter interpreter;
 	std::cout<<"it works."<<std::endl;
 	return 0;
 }

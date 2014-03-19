@@ -2,7 +2,7 @@
 
 
 LDFLAGS := -L../../../thirdparty/mupdf/build/debug -L../../DataElements/ -L../../Extractor
-CFLAGS := -I../../../thirdparty/mupdf/include/ -I../../DataElements/ -I../../Extractor/
+CFLAGS := -I../../../thirdparty/mupdf/include -I../../DataElements -I../../Extractor
 LIBRARIES:= -lmupdf-js-none -lextractor -lmupdf-js-none -ldataelement -lmupdf-js-none -lopenjpeg -ljpeg -ljbig2dec -lfreetype -lz
 
 all: LibTest
