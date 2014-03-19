@@ -17,6 +17,6 @@ lib: libdocelements.a
 	
 libdocelements.a: $(OBJS)
 
-.cpp.o:
+.cpp .o:
 	g++ $(CFLAGS) -c $< -o $@
 	
