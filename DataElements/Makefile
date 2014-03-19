@@ -13,7 +13,7 @@ all: $(OBJ) $(TARGET)
 
 
 $(TARGET): $(OBJ)
-	ar $(TARGET) $(OBJ)
+	ar csrv $(TARGET) $(OBJ)
 
 $(OBJ): $(SRC)
 
