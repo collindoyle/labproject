@@ -10,8 +10,8 @@
 #define __DrEntity__DrThumbnail__
 
 #include <iostream>
-extern "C"
-{
+
+extern "C" {
 #include "mupdf/fitz.h"
 }
 
