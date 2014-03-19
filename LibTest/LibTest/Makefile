@@ -7,10 +7,10 @@ LIBRARIES:= -lextractor -lmupdf-js-none -ldataelement -lmupdf-js-none -lopenjpeg
 
 all: LibTest
 LibTest: DrTest.o
-	gxx $(LDFLAGS) -o LibTest DrTest.o $(LIBRARIES)
+	gcc $(LDFLAGS) -o LibTest DrTest.o $(LIBRARIES)
 	rm -rf *.o
 DrTest.o: DrTest.h DrTest.cpp
-	gxx $(CFLAGS) -c DrTest.cpp -o DrTest.o
+	gcc $(CFLAGS) -c DrTest.cpp -o DrTest.o
 
 clean:
 	rm -rf *.o LibTest
