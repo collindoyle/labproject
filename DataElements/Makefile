@@ -8,7 +8,7 @@ default: all
 
 all: lib
 
-lib: 
+lib: *.o
 
 .cpp.o:
 	g++ $(CFLAGS) -c $< -o $@
