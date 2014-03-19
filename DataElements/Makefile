@@ -2,7 +2,7 @@
 
 build ?= debug
 
-CFLAGS := $(CFLAGS) -Wall -Wvla -g -I../../thirdparty/mupdf/include
+CFLAGS := $(CFLAGS) -Wall -Wvla -g -I../../thirdparty/mupdf/include/
 
 SRC := $(wildcard *.cpp)
 OBJ := $(patsubst %.cpp, %.o, $(SRC))
