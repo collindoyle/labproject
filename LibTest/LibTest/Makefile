@@ -1,0 +1,16 @@
+#GNU Makefile
+
+
+LDFLAGS := -L../../../thirdparty/mupdf/build/debug/
+CFLAGS := -I../../../thirdparty/mupdf/include/
+LIBRARIES:= -lmupdf -lopenjpeg -ljpeg -ljbig2dec -lfreetype -lz
+
+all: LibTest
+LibTest: DrTest.o
+	g++ $(LDFLAGS) -o LibTest DrTest.o $(LIBRARIES)
+	rm -rf *.o
+DrTest.o: DrTest.h DrTest.c
+	g++ $(CFLAGS) -c DrTest.cpp -o DrTest.o
+
+clean:
+	rm -rf *.o LibTest
