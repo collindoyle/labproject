@@ -9,13 +9,13 @@ OBJ := $(patsubst %.cpp, %.o, $(SRC))
 TARGET := libdataelement.a
 
 
-all: $(SRC) $(TARGET)
+all: $(OBJ) $(TARGET)
 
 
-$(TARGET): $(OBJS)
+$(TARGET): $(OBJ)
 	ar $(TARGET) $(OBJ)
 
-$(OBJS): $(SRC)
+$(OBJ): $(SRC)
 
 .cpp.o:
 	g++ $(CFLAGS) -c $<
