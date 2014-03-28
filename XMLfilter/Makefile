@@ -1,8 +1,8 @@
 #GNU Makefile
 
 
-LDFLAGS := -L../../../thirdparty/mupdf/build/debug -L../../DataElements/ -L../../Extractor
-CFLAGS := -I../../../thirdparty/mupdf/include -I../../DataElements -I../../Extractor
+LDFLAGS := -L../../thirdparty/mupdf/build/debug -L../DataElements/ -L../Extractor
+CFLAGS := -I../../thirdparty/mupdf/include -I../DataElements -I../Extractor
 LIBRARIES:=  -lextractor -ldataelement -lmupdf -lmupdf-js-none -lopenjpeg -ljpeg -lfreetype -ljbig2dec -lz
 
 all: xmlfilter
