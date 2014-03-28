@@ -55,7 +55,7 @@ int main (int argc, char ** argv) {
 					
 				case '>':
 
-					buf.push_back(content);
+					buf+=content;
 					if (!filtertag) {
 						dist<<buf;
 					}
