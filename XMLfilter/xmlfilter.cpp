@@ -39,13 +39,16 @@ int main (int argc, char ** argv) {
 		src.open(argv[i]);
 		dist.open(newname);
 		std::string buf;
+		bool tagstart = false;
+		bool tagflag = false;
+		bool filtertag = false;
+		bool endtag = false;
+		
 		while (!src.eof()) {
+			
 			char content;
-			src.get(content);
-			bool tagstart = false;
-			bool tagflag = false;
-			bool filtertag = false;
-			bool endtag = false;
+			src.read(&content, 1);
+
 			switch (content) {
 				case '<':
 					tagflag = true;
