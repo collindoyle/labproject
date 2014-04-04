@@ -44,11 +44,13 @@ int main (int argc, char ** argv) {
 		bool filtertag = false;
 		bool endtag = false;
 		
-		while (!src.eof()) {
+		while (1) {
 			
 			char content;
-			src.read(&content, 1);
-
+			src.read(&content,1);
+			if (src.eof()) {
+				break;
+			}
 			switch (content) {
 				case '<':
 					tagflag = true;
