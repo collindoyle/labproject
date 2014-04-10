@@ -16,19 +16,16 @@
 
 int main(int argc, const char * argv[])
 {
+	DrFontCache * fc = new DrFontCache;
 	if (argc > 1) {
 		for (int i = 1; i < argc; i++) {
-			tinyxml2::XMLDocument doc;
-			DrXMLInterpreter::ConvertSource_Takasu(doc, argv[i]);
-            int len = strlen(argv[i]+1);
-            char * poutname = new char[len+9];
-            strcpy(poutname, argv[i]);
-            strcat(poutname, ".conv.xml");
-			doc.SaveFile(poutname);
-            delete [] poutname;
+			tinyxml2::XMLDocument xmldoc;
+			DrDocument doc;
+			DrXMLInterpreter::SetFontCache(fc);
+			DrXMLInterpreter::XMLConvertSource_Takasu(doc, argv[i]);
 		}
 
 	}
-	
+	delete fc;
     return 0;
 }

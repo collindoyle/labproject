@@ -25,6 +25,7 @@ public:
     static void SetFontCache(DrFontCache * cache);
     // convert the schema
     static void ConvertSource_Takasu(tinyxml2::XMLDocument &dstdoc, const char * srcfilename);
+	static void XMLConvertSource_Takasu(DrDocument &doc, const char * srcfilename);
 protected:
     static void Write(tinyxml2::XMLElement * parent, tinyxml2::XMLDocument * doc, DrPage * page);
     static void Write(tinyxml2::XMLElement * parent, tinyxml2::XMLDocument * doc, DrZone * zone);

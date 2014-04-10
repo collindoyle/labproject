@@ -85,7 +85,7 @@ int main (int argc, char ** argv) {
 					}
 					break;
 				case 'b':
-					if (tagstart || endtag) {
+					if (tagstart) {
 						buf+=content;
 						filtertag = true;
 						

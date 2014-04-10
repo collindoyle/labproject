@@ -8,6 +8,7 @@
 
 #include "DrXMLInterpreter.h"
 #include <string>
+#include <cstring>
 #include "EucencodeConverter.h"
 #include "DrTexGrouper.h"
 
@@ -190,6 +191,8 @@ void DrXMLInterpreter::ReadFrom(DrDocument &doc, const char *filename)
     }
 }
 
+
+
 void DrXMLInterpreter::Read(DrPage *drpage, tinyxml2::XMLElement *node)
 {
     //drpage->m_thumbnail = NULL;
@@ -341,6 +344,22 @@ eDirection DrXMLInterpreter::ReadDirection(tinyxml2::XMLElement *node)
     return edir;
 }
 
+void DrXMLInterpreter::XMLConvertSource_Takasu(DrDocument &doc, const char *srcfilename)
+{
+	tinyxml2::XMLDocument xmldoc;
+	ConvertSource_Takasu(xmldoc, srcfilename);
+	tinyxml2::XMLElement *pdoc = xmldoc.RootElement();
+    const char * sourcefile = pdoc->Attribute("filename");
+    doc.SetFileName(sourcefile);
+    for (tinyxml2::XMLElement * ppage = pdoc->FirstChildElement("page"); ppage != NULL; ppage = ppage->NextSiblingElement("page")) {
+        DrPage * page = new DrPage;
+        Read(page, ppage);
+        doc.AddPage(page);
+    }
+	WriteTo(sourcefile, doc);
+}
+
+
 void DrXMLInterpreter::ConvertSource_Takasu(tinyxml2::XMLDocument &dstdoc, const char *srcfilename)
 /* Convert the schema of XML files, from src to dst,
  to deal with different encodings and schemas
@@ -377,8 +396,7 @@ void DrXMLInterpreter::ConvertSource_Takasu(tinyxml2::XMLDocument &dstdoc, const
         {
             // Create the root element for the new doc.
 
-            const char * pfilename = strstr(srcfilename, ".conv");
-            int len = pfilename - srcfilename;
+            int len = strlen(srcfilename)+1;
             char * poutname = new char[len+9];
             strncpy(poutname, srcfilename, len);
             strcat(poutname, ".conv.xml");
