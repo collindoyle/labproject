@@ -280,7 +280,7 @@ void DrXMLInterpreter::Read(DrChar *drchar, tinyxml2::XMLElement *node)
     drchar->m_font = ReadFont(node);
     char c[4]="";
     drchar->GetUTF8String(c);
-    std::cout<<c<<std::endl;
+    //std::cout<<c<<std::endl;
 }
 
 void DrXMLInterpreter::ReadBox(DrBox *drbox, tinyxml2::XMLElement *node)
