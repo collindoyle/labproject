@@ -199,25 +199,39 @@ void DrXMLInterpreter::Read(DrPage *drpage, tinyxml2::XMLElement *node)
     ReadBox(&(drpage->m_pagebox), node);
     drpage->m_pagenum = node->IntAttribute("pageno");
     std::list<DrLine *> linelist;
-    for (tinyxml2::XMLElement * pline = node->FirstChildElement("line"); pline != NULL; pline = pline->NextSiblingElement("line")) {
-        DrLine *line = new DrLine;
-        Read(line, pline);
-        linelist.push_back(line);
-    }
-    DrTextGrouper::TextGroup(drpage->m_zonelist, linelist);
+	if (node->FirstChildElement("zone") == NULL) {
+		for (tinyxml2::XMLElement * pline = node->FirstChildElement("line"); pline != NULL; pline = pline->NextSiblingElement("line")) {
+			DrLine *line = new DrLine;
+			Read(line, pline);
+			linelist.push_back(line);
+		}
+		DrTextGrouper::TextGroup(drpage->m_zonelist, linelist);
+	}
+	else
+	{
+		for (tinyxml2::XMLElement *pzone = node->FirstChildElement("zone"); pzone != NULL; pzone = pzone->NextSiblingElement("zone")) {
+			DrZone * zone = new DrZone;
+			Read(zone,pzone);
+			drpage->m_zonelist.push_back(zone);
+		}
+	}
     //    std::cout<<"Parsed the line nodes"<<std::endl;
 }
 
 void DrXMLInterpreter::Read(DrZone *drzone, tinyxml2::XMLElement *node)
 {
-    const char * labelname = node->Attribute("label");
-    drzone->m_label = NONE;
-    for (int i = 0; i < sizeof(labels); i++) {
-        if (strcmp(labelname, labels[i]) == 0) {
-            drzone->m_label = (eZoneLabel)i;
-            break;
-        }
-    }
+    const char * labelname = node->Attribute("type");
+	if (labelname != NULL) {
+		for (int i = 0; i < sizeof(labels); i++) {
+			if (strcmp(labelname, labels[i]) == 0) {
+				drzone->m_label = (eZoneLabel)i;
+				break;
+			}
+		}
+	}
+	else
+		drzone->m_label = NONE;
+
     drzone->m_direction = ReadDirection(node);
     
     for (tinyxml2::XMLElement * pline = node->FirstChildElement("line"); pline != NULL; pline = pline->NextSiblingElement("line")) {
