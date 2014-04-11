@@ -136,6 +136,16 @@ void DrAnalyzer::CalculateAttributes(DrPage &page, const char * outputfilename)
                 DrFontDescriptor * pfont = (*itphrase)->m_font;
                 if (pfont->m_fontstyle != DrFontDescriptor::FS_NONE) {
                     pzone->m_attr->m_style = pfont->m_fontstyle;
+					if (pzone->m_attr->m_style == DrFontDescriptor::FS_BOLD || pzone->m_attr->m_style == DrFontDescriptor::FS_BOLD_ITALIC) {
+						pzone->m_attr->m_bold = 1;
+					}
+					else
+						pzone->m_attr->m_bold = 0;
+					if (pzone->m_attr->m_style == DrFontDescriptor::FS_ITALIC || pzone->m_attr->m_style == DrFontDescriptor::FS_BOLD_ITALIC) {
+						pzone->m_attr->m_italic = 1;
+					}
+					else
+						pzone->m_attr->m_italic = 0;
                 }
                 charcount += (*itphrase)->m_charlist.size();
                 std::map<float,int>::iterator itlocalmap = zonefontmap.find(pfont->m_fontsize);
@@ -196,14 +206,23 @@ void DrAnalyzer::CalculateAttributes(DrPage &page, const char * outputfilename)
         
         if (minalignaccum == leftalign) {
             (*itzone)->m_attr->m_align = ealign::LEFT;
+			(*itzone)->m_attr->m_left = 1;
+			(*itzone)->m_attr->m_center = 0;
+			(*itzone)->m_attr->m_right = 0;
         }
         else if (minalignaccum == centeralign)
         {
             (*itzone)->m_attr->m_align = ealign::CENTER;
+			(*itzone)->m_attr->m_left = 0;
+			(*itzone)->m_attr->m_center = 1;
+			(*itzone)->m_attr->m_right = 1;
         }
         else
         {
             (*itzone)->m_attr->m_align = ealign::RIGHT;
+			(*itzone)->m_attr->m_left = 0;
+			(*itzone)->m_attr->m_center = 0;
+			(*itzone)->m_attr->m_right = 1;
         }
         int maxcount = 0; float fontsize = 0.0;
         for(std::map<float, int>::iterator itmap = zonefontmap.begin(); itmap != zonefontmap.end(); itmap++)
@@ -234,7 +253,7 @@ void DrAnalyzer::CalculateAttributes(DrPage &page, const char * outputfilename)
     outf.open(outputfilename,std::ios_base::app);
     for (std::list<DrZone *>::iterator itzone = page.m_zonelist.begin(); itzone != page.m_zonelist.end(); itzone++) {
         DrAttributeList * attr = (*itzone)->m_attr;
-        outf<<attr->m_label<<" 1:"<<attr->m_aversize<<" 2:"<<attr->m_charcount<<" 3:"<<attr->m_align<<" 4:"<<attr->m_spacein<<" 5:"<<attr->m_spacebefore<<" 6:"<<attr->m_spaceafter<<" 7:"<<attr->m_style<<std::endl;
+        outf<<attr->m_label<<" 1:"<<attr->m_aversize<<" 2:"<<attr->m_charcount<<" 3:"<<attr->m_left<<" 4:"<<attr->m_right<<" 5:"<<attr->m_center<<" 6:"<<attr->m_spacein<<" 7:"<<attr->m_spacebefore<<" 8:"<<attr->m_spaceafter<<" 9:"<<attr->m_bold<<" 10:"<<attr->m_italic<<std::endl;
     }
     outf.close();
     

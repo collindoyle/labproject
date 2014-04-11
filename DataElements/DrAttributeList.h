@@ -42,7 +42,12 @@ public:
     float               m_spacein;
     float               m_spaceafter;
     int                 m_align;
+	int					m_left;
+	int					m_center;
+	int					m_right;
     DrFontDescriptor::style m_style;
+	int 				m_bold;
+	int					m_italic;
 public:
     DrAttributeList();
 };
