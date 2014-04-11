@@ -205,21 +205,21 @@ void DrAnalyzer::CalculateAttributes(DrPage &page, const char * outputfilename)
         minalignaccum = minalignaccum < leftalign ? minalignaccum : leftalign;
         
         if (minalignaccum == leftalign) {
-            (*itzone)->m_attr->m_align = ealign::LEFT;
+            (*itzone)->m_attr->m_align = LEFT;
 			(*itzone)->m_attr->m_left = 1;
 			(*itzone)->m_attr->m_center = 0;
 			(*itzone)->m_attr->m_right = 0;
         }
         else if (minalignaccum == centeralign)
         {
-            (*itzone)->m_attr->m_align = ealign::CENTER;
+            (*itzone)->m_attr->m_align = CENTER;
 			(*itzone)->m_attr->m_left = 0;
 			(*itzone)->m_attr->m_center = 1;
 			(*itzone)->m_attr->m_right = 1;
         }
         else
         {
-            (*itzone)->m_attr->m_align = ealign::RIGHT;
+            (*itzone)->m_attr->m_align = RIGHT;
 			(*itzone)->m_attr->m_left = 0;
 			(*itzone)->m_attr->m_center = 0;
 			(*itzone)->m_attr->m_right = 1;
