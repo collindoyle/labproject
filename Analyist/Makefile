@@ -6,7 +6,7 @@ CFLAGS := $(CFLAGS) -Wall -Wvla -g -I../../thirdparty/mupdf/include/ -I../DataEl
 
 LDFLAGS := ../../thirdparty/mupdf/build/debug/
 
-LIBRARIES:= $(LDFLAGS)/libmupdf.a $(LDFLAGS)/libopenjpeg.a $(LDFLAGS)/libjpeg.a $(LDFLAGS)/libjbig2dec.a $(LDFLAGS)/libfreetype.a $(LDFLAGS)/libz.a
+LIBRARIES:= ../../thirdparty/svm_light/svm_learn.o ../../thirdparty/svm_light/svm_common.o ../../thirdparty/svm_light/svm_hideo.o ../DataElements/libdataelement.a $(LDFLAGS)/libmupdf.a $(LDFLAGS)/libopenjpeg.a $(LDFLAGS)/libjpeg.a $(LDFLAGS)/libjbig2dec.a $(LDFLAGS)/libfreetype.a $(LDFLAGS)/libz.a
 
 SRC := $(wildcard *.cpp)
 OBJ := $(patsubst %.cpp, %.o, $(SRC))

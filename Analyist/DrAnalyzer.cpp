@@ -11,6 +11,10 @@
 #include <iostream>
 #include <map>
 
+extern "C" {
+#include "svm_common.h"
+#include "svm_learn.h"
+}
 
 
 
@@ -29,9 +33,9 @@ void DrAnalyzer::SetDocument(DrDocument *pdoc)
     m_doc = pdoc;
 }
 
-void DrAnalyzer::CalculateAttributes(DrPage &page, const char * outputfilename)
+void DrAnalyzer::CalculateAttributes(DrPage & page)
 {
-    std::map<float, int> pagefontmap;
+	std::map<float, int> pagefontmap;
     
     
     for (std::list<DrZone *>::iterator itzone = page.m_zonelist.begin(); itzone != page.m_zonelist.end(); itzone++) {
@@ -88,7 +92,7 @@ void DrAnalyzer::CalculateAttributes(DrPage &page, const char * outputfilename)
                     }
                 }
             }
-
+			
             else  {
                 if (offset.y > 0) {
                     if (prev.Size() == 0) {
@@ -129,7 +133,7 @@ void DrAnalyzer::CalculateAttributes(DrPage &page, const char * outputfilename)
         
         for (std::list<DrLine *>::iterator itline = pzone->m_linelist.begin(); itline != pzone->m_linelist.end(); itline++) {
             DrLine *pline = *itline;
-
+			
             for (std::list<DrPhrase *>::iterator itphrase = pline->m_phraselist.begin(); itphrase != pline->m_phraselist.end(); itphrase++) {
                 
                 // count Most used font size
@@ -195,12 +199,12 @@ void DrAnalyzer::CalculateAttributes(DrPage &page, const char * outputfilename)
                 float centerline = ((*itline)->m_bbox.m_y0 + (*itline)->m_bbox.m_y1)/2;
                 centeralign += fabs(centerline - centerzone);
             }
-
+			
         }
         if (linecount != 0) {
             pzone->m_attr->m_spacein = inzonedistance/linecount;
         }
-
+		
         float minalignaccum = centeralign < rightalign ? centeralign : rightalign;
         minalignaccum = minalignaccum < leftalign ? minalignaccum : leftalign;
         
@@ -249,6 +253,11 @@ void DrAnalyzer::CalculateAttributes(DrPage &page, const char * outputfilename)
     for (std::list<DrZone *>::iterator itzone = page.m_zonelist.begin(); itzone != page.m_zonelist.end(); itzone++) {
         (*itzone)->m_attr->m_aversize = (*itzone)->m_attr->m_aversize/mostfontsize;
     }
+}
+
+void DrAnalyzer::CalculateAttributes(DrPage &page, const char * outputfilename)
+{
+	CalculateAttributes(page);
     std::ofstream outf;
     outf.open(outputfilename,std::ios_base::app);
     for (std::list<DrZone *>::iterator itzone = page.m_zonelist.begin(); itzone != page.m_zonelist.end(); itzone++) {
@@ -257,4 +266,21 @@ void DrAnalyzer::CalculateAttributes(DrPage &page, const char * outputfilename)
     }
     outf.close();
     
+}
+
+void DrAnalyzer::ExtractAttributeList(std::list<DrAttributeList> &attrlist, DrPage &page)
+{
+	CalculateAttributes(page);
+	for (std::list<DrZone *>::iterator itzone = page.m_zonelist.begin(); itzone != page.m_zonelist.end(); itzone++) {
+		attrlist.push_back(*(*itzone)->m_attr);
+	}
+}
+
+void DrAnalyzer::TrainSVMModel(std::list<DrAttributeList> &attrlist)
+{
+	// Train for the title model
+	for (std::list<DrAttributeList>::iterator itattr = attrlist.begin(); itattr != attrlist.end(); itattr++) {
+		SVECTOR * vector = new SVECTOR;
+		vector->words = new WORD[]
+	}
 }

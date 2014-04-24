@@ -10,14 +10,9 @@
 #define __DrAnalyzer__DrAnalyzer__
 
 #include <iostream>
+#include <list>
 #include "DrDocument.h"
-/*
-extern "C"
-{
-#include "svm_struct/svm_struct_common.h"
-#include "svm_struct/svm_struct_learn.h"
-}
-*/
+
 class DrAnalyzer {
 public:
     DrDocument* m_doc;
@@ -27,9 +22,10 @@ public:
     DrAnalyzer();
     ~DrAnalyzer();
     void SetDocument(DrDocument* pdoc);
+	void CalculateAttributes(DrPage & page);
     void CalculateAttributes(DrPage & page, const char * outputfilename);
-
-
+	void ExtractAttributeList(std::list<DrAttributeList> & attrlist, DrPage & page);
+	void TrainSVMModel(std::list<DrAttributeList> & attrlist);
 };
 
 #endif /* defined(__DrAnalyzer__DrAnalyzer__) */
