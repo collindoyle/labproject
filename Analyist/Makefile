@@ -2,7 +2,7 @@
 
 build ?= debug
 
-CFLAGS := $(CFLAGS) -Wall -Wvla -g -I../../thirdparty/mupdf/include/ -I../DataElements/
+CFLAGS := $(CFLAGS) -Wall -Wvla -g -I../../thirdparty/mupdf/include/ -I../DataElements/ -I../../thirdparty/svm_light/
 
 LDFLAGS := ../../thirdparty/mupdf/build/debug/
 
