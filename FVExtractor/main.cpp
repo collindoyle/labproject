@@ -20,16 +20,18 @@ int main(int argc, char * argv[])
 	DrFontCache * fc = new DrFontCache;
 	DrXMLInterpreter::SetFontCache(fc);
 	if (argc >= 2) {
-		
+
+		DrAnalyzer analyist;
+		std::list<DrAttributeList> attrlist;
 		for (int i = 1; i < argc; i++) {
-			DrAnalyzer analyist;
 			DrDocument doc;
 			DrXMLInterpreter::ReadFrom(doc, argv[i]);
 			std::list<DrPage *> &pages = doc.GetPageList();
 			for (std::list<DrPage *>::iterator it = pages.begin(); it != pages.end(); it++) {
-				analyist.CalculateAttributes(**it, "features.dat");
+				analyist.ExtractAttributeList(attrlist, **it);
 			}
 		}
+		analyist.TrainSVMModel(attrlist,ATTRSIZE);
 	}
 	delete fc;
 	return 0;

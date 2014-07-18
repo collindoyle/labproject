@@ -11,15 +11,14 @@
 DrAttributeList::DrAttributeList()
 {
     m_label = NONE;
-    m_aversize = 0.0;
-    m_charcount = 0;
-    m_spacebefore = 0.0;
-    m_spacein = 0.0;
-    m_align = LEFT;
-	m_left = 1;
-	m_right = 0;
-	m_center = 0;
-    m_style = DrFontDescriptor::FS_NONE;
-	m_bold = 0;
-	m_italic = 0;
+	m_attributevector[0] = 0.0;
+	m_attributevector[1] = 0;
+	m_attributevector[2] = 0.0;
+	m_attributevector[3] = 0.0;
+	m_attributevector[4] = 0.0;
+	m_attributevector[5] = 1;
+	m_attributevector[6] = 0;
+	m_attributevector[7] = 0;
+	m_attributevector[8] = 0;
+	m_attributevector[9] = 0;
 }

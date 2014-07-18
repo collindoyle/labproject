@@ -25,7 +25,8 @@ public:
 	void CalculateAttributes(DrPage & page);
     void CalculateAttributes(DrPage & page, const char * outputfilename);
 	void ExtractAttributeList(std::list<DrAttributeList> & attrlist, DrPage & page);
-	void TrainSVMModel(std::list<DrAttributeList> & attrlist);
+	void TrainSVMModel(std::list<DrAttributeList> & attrlist, int featurelength);
+	void ClassifyData();
 };
 
 #endif /* defined(__DrAnalyzer__DrAnalyzer__) */
