@@ -361,6 +361,7 @@ eDirection DrXMLInterpreter::ReadDirection(tinyxml2::XMLElement *node)
 void DrXMLInterpreter::XMLConvertSource_Takasu(DrDocument &doc, const char *srcfilename)
 {
 	tinyxml2::XMLDocument xmldoc;
+	std::cout<<"Start XMLConvertSource_Takasu"<<std::endl;
 	ConvertSource_Takasu(xmldoc, srcfilename);
 	tinyxml2::XMLElement *pdoc = xmldoc.RootElement();
     const char * sourcefile = pdoc->Attribute("filename");
@@ -371,6 +372,7 @@ void DrXMLInterpreter::XMLConvertSource_Takasu(DrDocument &doc, const char *srcf
         doc.AddPage(page);
     }
 	WriteTo(sourcefile, doc);
+	std::cout<<"End XMLCounvertSource_Takasu"<<std::endl;
 }
 
 
@@ -386,6 +388,7 @@ void DrXMLInterpreter::ConvertSource_Takasu(tinyxml2::XMLDocument &dstdoc, const
         
         // Get the value of source encode
         std::string srcencode;
+		std::cout<<"Start ConvertSource_Takasu"<<std::endl;
         tinyxml2::XMLDeclaration * pdeclare = dstdoc.NewDeclaration();
         dstdoc.InsertFirstChild(pdeclare);
         const char * srcdeclare = srcdoc.FirstChild()->Value();
@@ -428,6 +431,7 @@ void DrXMLInterpreter::ConvertSource_Takasu(tinyxml2::XMLDocument &dstdoc, const
                 ConvertChild(pnewroot,dstdoc,p,srcencode,bbox,NULL,dir, templ);
             }
         }
+		std::cout<<"End ConvertSource_Takasu"<<std::endl;
     }
 }
 
