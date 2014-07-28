@@ -25,11 +25,14 @@ int main(int argc, char * argv[])
 		std::list<DrAttributeList> attrlist;
 		for (int i = 1; i < argc; i++) {
 			DrDocument doc;
+			std::cout<<"Start Main: "<<argv[i]<<std::endl;
 			DrXMLInterpreter::ReadFrom(doc, argv[i]);
+			std::cout<<"File: "<<argv[i]<<std::endl;
 			std::list<DrPage *> &pages = doc.GetPageList();
 			for (std::list<DrPage *>::iterator it = pages.begin(); it != pages.end(); it++) {
 				analyist.ExtractAttributeList(attrlist, **it);
 			}
+			std::cout<<"End Main"<<std::endl;
 		}
 		analyist.TrainSVMModel(attrlist,ATTRSIZE);
 	}

@@ -180,6 +180,7 @@ void DrXMLInterpreter::Write(tinyxml2::XMLElement *parent, tinyxml2::XMLDocument
 void DrXMLInterpreter::ReadFrom(DrDocument &doc, const char *filename)
 {
     tinyxml2::XMLDocument xmldoc;
+	std::cout<<"Start ReadFrom "<<filename<<std::endl;
     xmldoc.LoadFile(filename);
     tinyxml2::XMLElement *pdoc = xmldoc.RootElement();
     const char * sourcefile = pdoc->Attribute("filename");
@@ -189,6 +190,7 @@ void DrXMLInterpreter::ReadFrom(DrDocument &doc, const char *filename)
         Read(page, ppage);
         doc.AddPage(page);
     }
+	std::cout<<"End ReadFrom"<<std::endl;
 }
 
 
