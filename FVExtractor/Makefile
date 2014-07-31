@@ -12,7 +12,7 @@ TARGET := FVExtractor
 
 all: $(TARGET)
 $(TARGET): $(OBJ)
-	g++ $(LDFLAGS)  $(OBJ) ../../thirdparty/svm_light/svm_learn.o ../../thirdparty/svm_light/svm_common.o ../../thirdparty/svm_light/svm_hideo.o $(LIBRARIES) -o $(TARGET)
+	g++ -g $(LDFLAGS)  $(OBJ) ../../thirdparty/svm_light/svm_learn.o ../../thirdparty/svm_light/svm_common.o ../../thirdparty/svm_light/svm_hideo.o $(LIBRARIES) -o $(TARGET)
 	rm -rf *.o
 .cpp.o:
 	g++ $(CFLAGS) -c $< -o $@
