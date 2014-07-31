@@ -321,6 +321,7 @@ void DrAnalyzer::TrainSVMModel(std::list<DrAttributeList> &attrlist, int feature
 	kernel_cache = NULL;
 	strcpy(kernel_parm.custom,"empty");
 	long counter = 0;
+	std::cout<<"Start TrainSVMModel."<<std::endl;
 	docs = new DOC*[attrlist.size()];
 	target = new double[attrlist.size()];
 	for (std::list<DrAttributeList>::iterator itattr = attrlist.begin(); itattr != attrlist.end(); itattr++) {
@@ -344,7 +345,9 @@ void DrAnalyzer::TrainSVMModel(std::list<DrAttributeList> &attrlist, int feature
 	}
 	totwords = ATTRSIZE;
 	totdoc = attrlist.size();
+	std::cout<<"Start classification training"<<std::endl;
 	svm_learn_classification(docs, target, totdoc, totwords, &learn_parm, &kernel_parm, kernel_cache, model, alpha_in);
+	std::cout<<"End classification training"<<std::endl;
 	write_model("model.dat", model);
 	delete model;
 	for (int i = 0; i <totdoc; i++) {
@@ -353,5 +356,5 @@ void DrAnalyzer::TrainSVMModel(std::list<DrAttributeList> &attrlist, int feature
 	}
 	delete [] docs;
 	delete target;
-	
+	std::cout<<"End TrainSVMModel"<<std::endl;
 }
